@@ -30,22 +30,35 @@ public class MarkDown2HtmlWrapper {
 
     public static String url = System.getProperty("user.dir");
     public static String MD_CSS = null;
-
+//css放在html一起
+//    static {
+//        try {
+//            MD_CSS = FileReadUtil.readAll(url + "\\src\\main\\resources\\public\\css\\md\\markdown.css");
+//            MD_CSS = "<!DOCTYPE html>\n" +
+//                    "<html lang=\"en\">\n" +
+//                    "<head>\n" +
+//                    "    <meta charset=\"UTF-8\"/>\n" +
+//                    "    <title>title</title>\n" +
+//                    " <style type=\"text/css\">\n" + MD_CSS + "\n</style>\n" +
+//                    "</head>";
+//        } catch (Exception e) {
+//            MD_CSS = "";
+//        }
+//    }
+    //html页面引用css，需要在配置类（WebConfig）设置静态资源访问
     static {
         try {
-            MD_CSS = FileReadUtil.readAll(url + "\\src\\main\\resources\\public\\css\\md\\markdown.css");
             MD_CSS = "<!DOCTYPE html>\n" +
                     "<html lang=\"en\">\n" +
                     "<head>\n" +
-                    "    <meta charset=\"UTF-8\">\n" +
+                    "    <meta charset=\"UTF-8\"/>\n" +
                     "    <title>title</title>\n" +
-                    " <style type=\"text/css\">\n" + MD_CSS + "\n</style>\n" +
+                    "  <link rel=\"stylesheet\" href=\"public/css/md/markdown.css\"/>\n" +
                     "</head>";
         } catch (Exception e) {
             MD_CSS = "";
         }
     }
-
 
     /**
      * 将本地的markdown文件，转为html文档输出
